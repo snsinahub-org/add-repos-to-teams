@@ -28,9 +28,7 @@ async function run() {
     console.log("TEAM NAME: " + core.getInput('team_name'))
     const org = core.getInput('org_name')
     const repos2 = await client.paginate(
-        client.rest.repos.listForOrg.endpoint({ 
-            org: org,
-            per_page: 20
+        client.rest.repos.listForOrg.endpoint({ org
         })
       );
     const repos3 = _.map(repos2, "name")
