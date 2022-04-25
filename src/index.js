@@ -33,9 +33,9 @@ async function run() {
       );
     const repos3 = _.map(repos2, "name")
     const repos4 = Promise.all(
-        repos.map(({ name }) =>
-          octokit.issues.create({
-            owner,
+        repos2.map(({ name }) =>
+        client.issues.create({
+            org,
             repo: name,
             title: "Hello, world!",
           })
