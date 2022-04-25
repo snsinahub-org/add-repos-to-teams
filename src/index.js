@@ -33,7 +33,7 @@ async function run() {
             per_page: 20
         })
       );
-    const repos3 = _.findKey(repos2, function(o) {
+    const repos3 = _.keyBy(repos2, function(o) {
         return String.fromCharCode(o.name);
       })
     const _repos = await client.paginate(client.repos.listForOrg, {
