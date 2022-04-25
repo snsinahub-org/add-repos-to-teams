@@ -5,7 +5,7 @@ const core = require('@actions/core')
 
 const _Octokit = Octokit.plugin(retry, throttling)
 const client = new _Octokit({
-    auth: core.core.getInput('GITHUB_TOKEN'),
+    auth: core.getInput('GITHUB_TOKEN'),
     throttle: {
         onRateLimit: (retryAfter, options, octokit) => {
             octokit.log.warn(`Request quota exhausted for request ${options.method} ${options.url}`)
