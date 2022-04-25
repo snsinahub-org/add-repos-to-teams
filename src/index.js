@@ -5,7 +5,7 @@ const core = require('@actions/core')
 
 const _Octokit = Octokit.plugin(retry, throttling)
 const client = new _Octokit({
-    auth: core.GITHUB_TOKEN,
+    auth: core.core.getInput('GITHUB_TOKEN'),
     throttle: {
         onRateLimit: (retryAfter, options, octokit) => {
             octokit.log.warn(`Request quota exhausted for request ${options.method} ${options.url}`)
@@ -23,11 +23,10 @@ const client = new _Octokit({
 })
 
 async function run() {
-    console.log("ORG NAME: " + core.org_name)
-    console.log("TEAM NAME: " + core.team_name)
-    const org_name = core.org_name
+    console.log("ORG NAME: " + core.getInput('org_name'))
+    console.log("TEAM NAME: " + core.getInput('team_name'))
     const _repos = await client.paginate(client.repos.listForOrg, {
-        org: org_name,
+        org: core.getInput('org_name'),
         type: 'all',
         per_page: 100
     })
