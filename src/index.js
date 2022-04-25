@@ -29,7 +29,8 @@ const client = new _Octokit({
         per_page: 100
     })
     const repos = _repos.map(repo => repo.name)
-    console.log(JSON.stringify(repos, 2))
+    console.log(JSON.stringify(repos, undefined, 2))
+    const text = JSON.stringify(repos, undefined, 2)
 
     // const _teams = await client.paginate(client.teams.listReposInOrg, {
     //     org: core.org_name,
