@@ -24,8 +24,10 @@ const client = new _Octokit({
 
 async function run() {
     console.log("ORG NAME: " + core.org_name)
+    console.log("TEAM NAME: " + core.team_name)
+    const org_name = core.org_name
     const _repos = await client.paginate(client.repos.listForOrg, {
-        org: core.org_name,
+        org: org_name,
         type: 'all',
         per_page: 100
     })
