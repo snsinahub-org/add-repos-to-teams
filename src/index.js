@@ -32,14 +32,23 @@ async function run() {
         })
       );
     const repos3 = _.map(repos2, "name")
-    const _repos = await client.paginate(client.repos.listForOrg, {
-        org: core.getInput('org_name'),
-        type: 'all',
-        per_page: 100
-    })
-    const repos = _repos.map(repo => repo.name)
-    console.log(JSON.stringify(repos3, undefined, 2))
-    const text = JSON.stringify(repos3, undefined, 2)
+    const repos4 = Promise.all(
+        repos.map(({ name }) =>
+          octokit.issues.create({
+            owner,
+            repo: name,
+            title: "Hello, world!",
+          })
+        )
+      );
+    // const _repos = await client.paginate(client.repos.listForOrg, {
+    //     org: core.getInput('org_name'),
+    //     type: 'all',
+    //     per_page: 100
+    // })
+    // const repos = _repos.map(repo => repo.name)
+    console.log(JSON.stringify(repos4, undefined, 2))
+    const text = JSON.stringify(repos4, undefined, 2)
 
     // const _teams = await client.paginate(client.teams.listReposInOrg, {
     //     org: core.org_name,
