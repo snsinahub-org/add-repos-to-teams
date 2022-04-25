@@ -1,6 +1,7 @@
 const {Octokit} = require('@octokit/rest')
 const {retry} = require('@octokit/plugin-retry')
 const {throttling} = require('@octokit/plugin-throttling')
+const {_} = require('lodash')
 const core = require('@actions/core')
 
 const _Octokit = Octokit.plugin(retry, throttling)
@@ -32,14 +33,17 @@ async function run() {
             per_page: 20
         })
       );
+    const repos3 = _.pickBy(repos2, function(value, key) {
+        return _.startsWith(key, "name");
+      })
     const _repos = await client.paginate(client.repos.listForOrg, {
         org: core.getInput('org_name'),
         type: 'all',
         per_page: 100
     })
     const repos = _repos.map(repo => repo.name)
-    console.log(JSON.stringify(repos2, undefined, 2))
-    const text = JSON.stringify(repos2, undefined, 2)
+    console.log(JSON.stringify(repos3, undefined, 2))
+    const text = JSON.stringify(repos3, undefined, 2)
 
     // const _teams = await client.paginate(client.teams.listReposInOrg, {
     //     org: core.org_name,
