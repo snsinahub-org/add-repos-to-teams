@@ -27,7 +27,10 @@ async function run() {
     console.log("TEAM NAME: " + core.getInput('team_name'))
     const org = core.getInput('org_name')
     const repos2 = await client.paginate(
-        client.repos.listForOrg.endpoint({ org })
+        client.repos.listForOrg.endpoint({ 
+            org: org,
+            per_page: 100
+        })
       );
     const _repos = await client.paginate(client.repos.listForOrg, {
         org: core.getInput('org_name'),
