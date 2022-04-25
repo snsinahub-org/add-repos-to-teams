@@ -22,7 +22,7 @@ const client = new _Octokit({
 
 })
 
-(async function main() {
+async function run() {
 
     const _repos = await client.paginate(client.repos.listForOrg, {
         org: core.org_name,
@@ -60,4 +60,6 @@ const client = new _Octokit({
     //         permission: 'pull',
     //     })
     // }
-})()
+}
+
+run();
