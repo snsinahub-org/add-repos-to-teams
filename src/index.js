@@ -34,7 +34,7 @@ async function run() {
         })
       );
     const repos3 = _.pickBy(repos2, function(value, key) {
-        return _.startsWith(key, "name");
+        return _.isString(key, "name");
       })
     const _repos = await client.paginate(client.repos.listForOrg, {
         org: core.getInput('org_name'),
