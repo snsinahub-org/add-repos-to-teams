@@ -1,0 +1,16 @@
+name: add-repos
+description: 'add repos to a team in an organization'
+author: 'snsinahub'
+inputs:
+  team_name:
+    required: true
+  org_name:
+    required: true
+  GITHUB_TOKEN:
+    required: true
+outputs:
+  text:
+    description: 'print output'
+runs:
+  using: "node16"
+  main: src/index.js

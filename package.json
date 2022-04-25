@@ -1,0 +1,30 @@
+{
+  "name": "add-repos-to-team",
+  "version": "1.0.0",
+  "description": "Adding orgniaztion repos to a team ",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/snsinahub-org/add-repos-to-teams.git"
+  },
+  "keywords": [
+    "team",
+    "repository",
+    "automation"
+  ],
+  "author": "snsinahub",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/snsinahub-org/add-repos-to-teams/issues"
+  },
+  "homepage": "https://github.com/snsinahub-org/add-repos-to-teams#readme",
+  "dependencies": {
+    "@actions/core": "^1.7.0",
+    "@actions/github": "^5.0.1",
+    "@octokit/plugin-retry": "^3.0.9",
+    "@octokit/plugin-throttling": "^3.6.2"
+  }
+}
