@@ -25,14 +25,18 @@ const client = new _Octokit({
 async function run() {
     console.log("ORG NAME: " + core.getInput('org_name'))
     console.log("TEAM NAME: " + core.getInput('team_name'))
+    const org = core.getInput('org_name')
+    const repos2 = await octokit.paginate(
+        octokit.repos.listForOrg.endpoint({ org })
+      );
     const _repos = await client.paginate(client.repos.listForOrg, {
         org: core.getInput('org_name'),
         type: 'all',
         per_page: 100
     })
     const repos = _repos.map(repo => repo.name)
-    console.log(JSON.stringify(repos, undefined, 2))
-    const text = JSON.stringify(repos, undefined, 2)
+    console.log(JSON.stringify(repos2, undefined, 2))
+    const text = JSON.stringify(repos2, undefined, 2)
 
     // const _teams = await client.paginate(client.teams.listReposInOrg, {
     //     org: core.org_name,
