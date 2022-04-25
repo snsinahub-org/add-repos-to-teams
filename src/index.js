@@ -33,7 +33,7 @@ async function run() {
             per_page: 20
         })
       );
-    const repos3 = _.keyBy(repos2, "name")
+    const repos3 = _.findBy(repos2, "name")
     const _repos = await client.paginate(client.repos.listForOrg, {
         org: core.getInput('org_name'),
         type: 'all',
