@@ -24,6 +24,7 @@ const client = new _Octokit({
 })
 
 async function run() {
+    const dryRun = core.getInput('DRY_RUN')
     const org = core.getInput('org_name')
     const team = core.getInput('team_name')
     let continueLoop = true
@@ -52,44 +53,17 @@ async function run() {
     }
     console.log(JSON.stringify(repos, undefined, 2))
     const text = JSON.stringify(repos, undefined, 2)
-
-    for (let i = 0; i< _.size(repos); i++) {
-        await client.request('PUT /orgs/{org}/teams/{team_slug}/repos/{owner}/{repo}', {
-            org: org,
-            team_slug: team,
-            owner: org,
-            repo: repos[i],
-            permission: 'pull'
-          })
+    if (dryRun) {
+        for (let i = 0; i< _.size(repos); i++) {
+            await client.request('PUT /orgs/{org}/teams/{team_slug}/repos/{owner}/{repo}', {
+                org: org,
+                team_slug: team,
+                owner: org,
+                repo: repos[i],
+                permission: 'pull'
+              })
+        }
     }
-
-    // const _teams = await client.paginate(client.teams.listReposInOrg, {
-    //     org: core.org_name,
-    //     team_slug: '<team_slug>',
-    //     per_page: 100
-    // })
-    // const teams = _teams.map(team => team.name)
-
-    // const filteredRepos = repos.filter(repo => {
-    //     return !teams.includes(repo)
-    // })
-
-    // if (filteredRepos.length === 0) {
-    //     console.log('No new repos to add')
-    //     return
-    // }
-
-    // let i = 1
-    // for (const repo of filteredRepos) {
-    //     console.log(`Adding team to repo #${i++} of ${filteredRepos.length}: ${repo}`)
-    //     await client.teams.addOrUpdateRepoPermissionsInOrg({
-    //         org: core.org_name,
-    //         owner: '<owner>',
-    //         repo: repo,
-    //         team_slug: '<team_slug>',
-    //         permission: 'pull',
-    //     })
-    // }
 }
 
 run();
