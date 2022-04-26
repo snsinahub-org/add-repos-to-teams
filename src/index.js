@@ -35,7 +35,10 @@ async function run() {
     console.log("REPOS 2: " + _.size(repos2))
     console.log("REPOS 3: " + _.size(repos3))
     const repos4 = await client.request('GET /orgs/{org}/repos', {
-        org: org
+        org: org,
+        type: 'all',
+        sort: 'full_name',
+        per_page: 100
       })
     const repos5 = _.map(repos4["data"], "name")
     // const _repos = await client.paginate(client.repos.listForOrg, {
