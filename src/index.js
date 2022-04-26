@@ -57,7 +57,8 @@ async function run() {
             org: org,
             team_slug: 'blah',
             owner: org,
-            repo: repos[i]
+            repo: repos[i],
+            permission: 'pull'
           })
     }
 
