@@ -31,7 +31,7 @@ async function run() {
     let repos = []
     while (continueLoop) {
         const repos4 = await client.request('GET /orgs/{org}/repos', {
-            org: 'snsinahub-org',
+            org: org,
             type: 'all',
             sort: 'full_name',
             per_page: perPage,
@@ -49,13 +49,6 @@ async function run() {
         
         
     }
-    // console.log("REPOS 4: " + JSON.stringify(repos4, undefined, 2))
-    // const _repos = await client.paginate(client.repos.listForOrg, {
-    //     org: core.getInput('org_name'),
-    //     type: 'all',
-    //     per_page: 100
-    // })
-    // const repos = _repos.map(repo => repo.name)
     console.log(JSON.stringify(repos, undefined, 2))
     const text = JSON.stringify(repos, undefined, 2)
 
