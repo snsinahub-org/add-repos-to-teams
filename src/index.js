@@ -28,7 +28,7 @@ async function run() {
     const total_repos = await client.request('GET /orgs/{org}', {
         org: org
       })
-    console.log("TOTAL : " + total_repos)
+    console.log("TOTAL : " + JSON.stringify(total_repos))
     const repos4 = await client.request('GET /orgs/{org}/repos', {
         org: 'snsinahub-org',
         type: 'all',
