@@ -8,6 +8,9 @@ inputs:
     required: true
   GITHUB_TOKEN:
     required: true
+  DRY_RUN:
+    required: false
+    default: true
 outputs:
   text:
     description: 'print output'
