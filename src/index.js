@@ -46,7 +46,7 @@ async function run() {
         } else {
             break
         }
-        console.log("REPOS ==>: " + _.size(repos))
+        
         
     }
     // console.log("REPOS 4: " + JSON.stringify(repos4, undefined, 2))
@@ -56,8 +56,8 @@ async function run() {
     //     per_page: 100
     // })
     // const repos = _repos.map(repo => repo.name)
-    console.log(JSON.stringify(repos5, undefined, 2))
-    const text = JSON.stringify(repos5, undefined, 2)
+    console.log(JSON.stringify(repos, undefined, 2))
+    const text = JSON.stringify(repos, undefined, 2)
 
     // const _teams = await client.paginate(client.teams.listReposInOrg, {
     //     org: core.org_name,
