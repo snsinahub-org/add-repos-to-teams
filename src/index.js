@@ -24,21 +24,13 @@ const client = new _Octokit({
 })
 
 async function run() {
-    console.log("ORG NAME: " + core.getInput('org_name'))
-    console.log("TEAM NAME: " + core.getInput('team_name'))
     const org = core.getInput('org_name')
-    const repos2 = await client.paginate(
-        client.rest.repos.listForOrg.endpoint({ org
-        })
-      );
-    const repos3 = _.map(repos2, "name")
-    console.log("REPOS 2: " + _.size(repos2))
-    console.log("REPOS 3: " + _.size(repos3))
     const repos4 = await client.request('GET /orgs/{org}/repos', {
-        org: org,
-        type: 'inernal',
+        org: 'snsinahub-org',
+        type: 'all',
         sort: 'full_name',
-        per_page: 100
+        per_page: 100,
+        page: 2
       })
     const repos5 = _.map(repos4["data"], "name")
     console.log("REPOS 4: " + _.size(repos4))
