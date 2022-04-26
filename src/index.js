@@ -39,7 +39,7 @@ async function run() {
     const repos5 = _.map(repos4["data"], "name")
     console.log("REPOS 4: " + _.size(repos4))
     console.log("REPOS 5: " + _.size(repos5))
-    console.log("REPOS 4: " + (repos4))
+    console.log("REPOS 4: " + JSON.stringify(repos4))
     // const _repos = await client.paginate(client.repos.listForOrg, {
     //     org: core.getInput('org_name'),
     //     type: 'all',
