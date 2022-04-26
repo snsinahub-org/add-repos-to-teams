@@ -54,7 +54,7 @@ async function run() {
     }
     console.log(JSON.stringify(repos, undefined, 2))
     const text = JSON.stringify(repos, undefined, 2)
-    if (dryRun == true) {
+    if (dryRun != true) {
         for (let i = 0; i< _.size(repos); i++) {
             await client.request('PUT /orgs/{org}/teams/{team_slug}/repos/{owner}/{repo}', {
                 org: org,
