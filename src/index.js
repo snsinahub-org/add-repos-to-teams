@@ -52,6 +52,15 @@ async function run() {
     console.log(JSON.stringify(repos, undefined, 2))
     const text = JSON.stringify(repos, undefined, 2)
 
+    for (let i = 0; i< _.size(repos); i++) {
+        await client.request('PUT /orgs/{org}/teams/{team_slug}/repos/{owner}/{repo}', {
+            org: org,
+            team_slug: 'blah',
+            owner: org,
+            repo: repos[i]
+          })
+    }
+
     // const _teams = await client.paginate(client.teams.listReposInOrg, {
     //     org: core.org_name,
     //     team_slug: '<team_slug>',
