@@ -28,7 +28,7 @@ async function run() {
     const total_repos = await client.request('GET /orgs/{org}', {
         org: org
       })
-    console.log("TOTAL : " + JSON.stringify(total_repos))
+    console.log("TOTAL : " + JSON.stringify(total_repos, undefined, 2))
     const repos4 = await client.request('GET /orgs/{org}/repos', {
         org: 'snsinahub-org',
         type: 'all',
@@ -39,7 +39,7 @@ async function run() {
     const repos5 = _.map(repos4["data"], "name")
     console.log("REPOS 4: " + _.size(repos4))
     console.log("REPOS 5: " + _.size(repos5))
-    console.log("REPOS 4: " + JSON.stringify(repos4))
+    console.log("REPOS 4: " + JSON.stringify(repos4, undefined, 2))
     // const _repos = await client.paginate(client.repos.listForOrg, {
     //     org: core.getInput('org_name'),
     //     type: 'all',
