@@ -25,6 +25,10 @@ const client = new _Octokit({
 
 async function run() {
     const org = core.getInput('org_name')
+    const total_repos = await client.request('GET /orgs/{org}', {
+        org: org
+      })
+    console.log("TOTAL : " + _.size(total_repos))
     const repos4 = await client.request('GET /orgs/{org}/repos', {
         org: 'snsinahub-org',
         type: 'all',
