@@ -7,4 +7,5 @@
         team_name: blah
         org_name: ${{ github.repository_owner }}
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        DRY_RUN: false
 ```
