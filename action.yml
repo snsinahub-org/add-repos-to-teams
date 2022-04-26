@@ -10,7 +10,7 @@ inputs:
     required: true
   DRY_RUN:
     required: false
-    default: true
+    default: false
 outputs:
   text:
     description: 'print output'
