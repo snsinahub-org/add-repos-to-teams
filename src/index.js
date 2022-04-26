@@ -25,6 +25,7 @@ const client = new _Octokit({
 
 async function run() {
     const org = core.getInput('org_name')
+    const team = core.getInput('team_name')
     let continueLoop = true
     let pageNo = 1
     let perPage = 5
@@ -55,7 +56,7 @@ async function run() {
     for (let i = 0; i< _.size(repos); i++) {
         await client.request('PUT /orgs/{org}/teams/{team_slug}/repos/{owner}/{repo}', {
             org: org,
-            team_slug: 'blah',
+            team_slug: team,
             owner: org,
             repo: repos[i],
             permission: 'pull'
