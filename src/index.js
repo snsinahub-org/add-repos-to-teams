@@ -32,17 +32,20 @@ async function run() {
         })
       );
     const repos3 = _.map(repos2, "name")
+    console.log("REPOS 2: " + _.size(repos2))
+    console.log("REPOS 3: " + _.size(repos3))
     const repos4 = await client.request('GET /orgs/{org}/repos', {
         org: org
       })
+    const repos5 = _.map(repos4["data"], "name")
     // const _repos = await client.paginate(client.repos.listForOrg, {
     //     org: core.getInput('org_name'),
     //     type: 'all',
     //     per_page: 100
     // })
     // const repos = _repos.map(repo => repo.name)
-    console.log(JSON.stringify(repos4, undefined, 2))
-    const text = JSON.stringify(repos4, undefined, 2)
+    console.log(JSON.stringify(repos5, undefined, 2))
+    const text = JSON.stringify(repos5, undefined, 2)
 
     // const _teams = await client.paginate(client.teams.listReposInOrg, {
     //     org: core.org_name,
