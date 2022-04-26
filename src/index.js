@@ -32,7 +32,7 @@ async function run() {
         })
       );
     const repos3 = _.map(repos2, "name")
-    const repos4 = await octokit.request('GET /orgs/{org}/repos', {
+    const repos4 = await client.request('GET /orgs/{org}/repos', {
         org: org
       })
     // const _repos = await client.paginate(client.repos.listForOrg, {
