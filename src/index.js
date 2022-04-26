@@ -32,15 +32,9 @@ async function run() {
         })
       );
     const repos3 = _.map(repos2, "name")
-    const repos4 = Promise.all(
-        repos2.map(({ name }) =>
-        client.issues.create({
-            org,
-            repo: name,
-            title: "Hello, world!",
-          })
-        )
-      );
+    const repos4 = await octokit.request('GET /orgs/{org}/repos', {
+        org: org
+      })
     // const _repos = await client.paginate(client.repos.listForOrg, {
     //     org: core.getInput('org_name'),
     //     type: 'all',
