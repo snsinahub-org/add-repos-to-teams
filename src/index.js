@@ -27,7 +27,7 @@ async function run() {
     const org = core.getInput('org_name')
     const total_repos = await client.request('GET /orgs/{org}', {
         org: org,
-        type: all
+        type: 'all'
       })
     console.log("TOTAL : " + JSON.stringify(total_repos, undefined, 2))
     const repos4 = await client.request('GET /orgs/{org}/repos', {
