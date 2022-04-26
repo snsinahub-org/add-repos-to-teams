@@ -30,7 +30,7 @@ async function run() {
         type: 'all',
         sort: 'full_name',
         per_page: 100,
-        page: 2
+        page: 0
       })
     const repos5 = _.map(repos4["data"], "name")
     console.log("REPOS 4: " + _.size(repos4))
