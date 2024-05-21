@@ -54,15 +54,30 @@ async function run() {
     }
     console.log(JSON.stringify(repos, undefined, 2))
     const text = JSON.stringify(repos, undefined, 2)
+    let wf_count = 0
     if (dryRun == 'false') {
         for (let i = 0; i< _.size(repos); i++) {
-            await client.request('PUT /orgs/{org}/teams/{team_slug}/repos/{owner}/{repo}', {
-                org: org,
-                team_slug: team,
+            // await client.request('PUT /orgs/{org}/teams/{team_slug}/repos/{owner}/{repo}', {
+            //     org: org,
+            //     team_slug: team,
+            //     owner: org,
+            //     repo: repos[i],
+            //     permission: 'pull'
+            //   })
+            await octokit.request('GET /repos/{owner}/{repo}/actions/workflows', {
                 owner: org,
                 repo: repos[i],
-                permission: 'pull'
-              })
+                headers: {
+                  'X-GitHub-Api-Version': '2022-11-28'
+                }
+            }).then((response) => {
+                console.log(response.data)
+                wf_count = wf_count + _.size(response.data)
+                console.log("WF COUNT: " + wf_count)    
+            }).catch((error) => {
+                console.log(error)
+            })
+
         }
     }
 }
