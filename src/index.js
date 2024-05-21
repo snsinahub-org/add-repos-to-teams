@@ -64,7 +64,7 @@ async function run() {
             //     repo: repos[i],
             //     permission: 'pull'
             //   })
-            await octokit.request('GET /repos/{owner}/{repo}/actions/workflows', {
+            await client.request('GET /repos/{owner}/{repo}/actions/workflows', {
                 owner: org,
                 repo: repos[i],
                 headers: {
