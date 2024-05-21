@@ -79,6 +79,7 @@ async function run() {
             })
 
         }
+        console.log("Final WF COUNT: " + wf_count)
     }
 }
 
